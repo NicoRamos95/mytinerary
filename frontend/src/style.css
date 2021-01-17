@@ -1,0 +1,76 @@
+#root {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Fugaz One', cursive;
+}
+header .hdr{
+  display: flex;
+  justify-content: space-between;
+
+}
+.bg-l{
+  background-color: #007bff;
+  padding: 0px;
+  border-radius: 0 300px 0 300px;
+
+}
+.bg-r{
+  background-color: #007bff;
+  border-radius: 300px 0 300px 0;
+}
+.liked{
+  color: #007bff;
+
+}
+.liked :hover {
+  color: red
+}
+
+header img {
+  max-width: 30%;
+  max-height: 32%;
+  margin:0 0 0 0;
+}
+Form h3{
+  text-align: center;
+}
+Form .button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.navbar {
+    font-family: 'Fugaz One', cursive;
+}
+.flechas{
+  display: flex;
+  justify-content: space-between;
+}
+.logo{
+  display: flex;
+  margin-left: 37vw;
+}
+.imagen {
+  justify-content: center;
+  padding: 10px;
+}
+.tarjeta {
+  margin: 11vw;
+}
+.formulario {
+  padding: 0 0 0 0;
+  display: flex;
+  justify-content: space-evenly;
+}
+.titulo-card {
+  display: flex;
+  justify-content: center;
+  background-color: rgba(0,0,0,0.5);
+}
+.nav {
+  width: 10vw;
+}
+.logo-user {
+  font-size: 5vw;
+}
