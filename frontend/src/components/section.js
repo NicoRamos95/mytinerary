@@ -1,16 +1,22 @@
 import React, { Component } from "react";
-import { Formulario } from "./form";
-import Tarjetas from "./tarjetas";
+import { Banner } from "./Banner";
+import Tarjetas from "./Tarjetas";
+import Cities from './Cities'
+
+import {BrowserRouter, Route} from 'react-router-dom'
 
 class Section extends Component {
   render() {
     return (
         <>
-        <section>
-        <Formulario />
-        <Tarjetas />
-
-        </section>
+        <BrowserRouter>
+            <Route exact path="/">
+              <Banner/>
+              <Tarjetas />
+            </Route>
+            <Route path="/cities" component={Cities}>
+            </Route>
+        </BrowserRouter>
         </>
     )
   }

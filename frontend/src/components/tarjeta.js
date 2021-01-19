@@ -4,7 +4,7 @@ const Tarjeta = ({items}) => {
   return (
     <>
     <div className="tarjeta d-flex flex-wrap">
-      {items.map((item) => {
+      {items.map((item, index) => {
         return (
           <Card inverse>
             <CardImg className=""  src={`./assets/${item.imagen}`} alt={item.titulo} />

@@ -22,12 +22,12 @@ const Header = () => {
                     <Collapse isOpen={isOpen} navbar>
                         <Nav className="mr-auto" navbar>
                             <NavItem>
-                                <NavLink href="#">Cities</NavLink>
+                                <NavLink href="/cities">Cities</NavLink>
                             </NavItem>
                         </Nav>
                     </Collapse>
                 </Navbar>
-                <NavLink href="#"><i className="fas fa-user m-2 logo-user"></i></NavLink>
+                <NavLink href="/cities"><i className="fas fa-user m-2 logo-user"></i></NavLink>
             </div>
             <div className="hdr bg-l">
 
