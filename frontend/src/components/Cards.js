@@ -1,13 +1,14 @@
-
 import { Card, CardTitle, CardImg, CardImgOverlay } from 'reactstrap';
-const Tarjeta = ({items}) => {
+
+//creando tarjetas individuales para mostrar en el carrusel
+const Cards = ({items}) => {
   return (
     <>
     <div className="tarjeta d-flex flex-wrap">
       {items.map((item, index) => {
         return (
           <Card inverse>
-            <CardImg className=""  src={`./assets/${item.imagen}`} alt={item.titulo} />
+            <CardImg className=""  src={`./assets/carrousel/${item.imagen}`} alt={item.titulo} />
             <CardImgOverlay>
               <CardTitle tag="h5" className="titulo-card">{item.titulo}</CardTitle>
             </CardImgOverlay>
@@ -19,4 +20,4 @@ const Tarjeta = ({items}) => {
   )
   
 }
-export default Tarjeta
+export default Cards

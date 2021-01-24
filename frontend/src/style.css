@@ -64,13 +64,77 @@ Form .button {
   justify-content: space-evenly;
 }
 .titulo-card {
+  width: 36vw;
   display: flex;
   justify-content: center;
   background-color: rgba(0,0,0,0.5);
+  border-radius: 300px 0 300px 0;
+}
+
+.titulo-card-l {
+  width: 36vw;
+  display: flex;
+  justify-content: center;
+  background-color: rgba(0,0,0,0.5);
+  border-radius: 0 300px 0 300px;
 }
 .nav {
   width: 10vw;
 }
 .logo-user {
   font-size: 5vw;
+}
+.image-l{
+  display: flex;
+  align-items: center;
+  width: 75vw;
+  height: 15vw;
+  margin: 0px;
+  padding: 1px;
+  border-radius: 0 300px 0 300px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+}
+.image-r {
+  display: flex;
+  align-items: center;
+  width: 75vw;
+  height: 15vw;
+  margin: 0px;
+  padding: 1px;
+  border-radius: 300px 0 300px 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+}
+
+.cities {
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+}
+.fa-arrow-circle-left{
+  text-decoration: none;
+  font-size: 5vw
+}
+.backcities {
+  text-decoration: none;
+}
+.not-found{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 75vw;
+  height: 15vw;
+  margin: 0px;
+  padding: 1px;
+  border-radius: 0 300px 0 300px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
 }

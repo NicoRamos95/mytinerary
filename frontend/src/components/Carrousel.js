@@ -5,8 +5,10 @@ import {
   CarouselControl,
   CarouselIndicators,
 } from 'reactstrap';
-import Tarjeta from './Tarjeta';
+import Cards from './Cards';
 
+
+// Aca hay un array estatico desde el 1er sprint y al usar 3 array sobre el mismo por el carrusel 
 const items = [[
   {titulo: 'Emirates', imagen: 'imagen1.jpg'},
   {titulo: 'Budapest', imagen: 'imagen2.jpg'},
@@ -25,16 +27,18 @@ const items = [[
 ]
 ]
 
-const Tarjetas = (props) => {
+//Componente funcional para corrusel hecho con reactstraps
+const Carrousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
 
+  //animacion para siguiente pag
   const next = () => {
     if (animating) return;
     const nextIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
     setActiveIndex(nextIndex);
   }
-
+  //animacion para lag anterior
   const previous = () => {
     if (animating) return;
     const nextIndex = activeIndex === 0 ? items.length - 1 : activeIndex - 1;
@@ -46,6 +50,7 @@ const Tarjetas = (props) => {
     setActiveIndex(newIndex);
   }
 
+  // creando paginas de carrusel
   const slides = items.map((item, index) => {
     console.log(item)
       
@@ -53,13 +58,15 @@ const Tarjetas = (props) => {
       <CarouselItem
         onExiting={() => setAnimating(false)}
         onExited={() => setAnimating(true)}
+        key={index}
       >
-        <Tarjeta items={item}/>
+        <Cards items={item}/>
       </CarouselItem>
     );
   });
 
   return (
+  //retorna el carrusel con las paginas ya creadas
   <>
   <h3 className="text-center p-2">Popular MYtineraries</h3>
     <Carousel className="bg-l"
@@ -75,4 +82,4 @@ const Tarjetas = (props) => {
     </>
   );
 }
-export default Tarjetas;
+export default Carrousel;

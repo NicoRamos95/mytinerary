@@ -1,6 +1,6 @@
 import Button from 'react-bootstrap/Button'
 
-
+//componente funcional sencillo para home y redireccion a cities
 export const Banner = () => {
   
     return (
