@@ -22,27 +22,21 @@ class Cities extends Component {
   //creando el estado con propiedades a usar 
   state = {
     loader: true,
-    filter: "",
     data:[],
     original:[]
   }
 
   //funcion para escuchar el input del buscador y retorna un estado
-  handleChange = async event => {
+  handleChange = event => {
     event.persist()
-    await this.setState({ filter: event.target.value })
-    this.filterElement()
-    
-  }
-  //funcion para filtrar los datos retornando un item para comparar con el estado filter
-  filterElement=() => {
     var search = this.state.original.filter(item => {
-      return item.cityPic.toUpperCase().indexOf(this.state.filter.toUpperCase().trim()) === 0
+      return item.cityName.toUpperCase().indexOf(event.target.value.toUpperCase().trim()) === 0
     })
     //llena estado data con lo introducido y comparado en la funcion
     this.setState({data: search}) 
+    
   }
-  
+  //funcion para filtrar los datos retornando un item para comparar con el estado filter
   loading = () => {
     if (this.state.loader) {
       return (
@@ -66,7 +60,7 @@ class Cities extends Component {
               <Form>
                 <FormGroup>
                   <div className="d-flex-inline text-center">
-                    <Link className="text-center backcities mb-5" to="/"><i className="fas fa-arrow-circle-left d-flex justify-content-center"></i>Go to Back Home</Link>
+                    <Link className="text-center backcities mb-5" to="/"><i className="fas fa-arrow-circle-left d-flex justify-content-center"></i>Go Back to Home</Link>
                     <Input className="text-center m-2" value={this.state.filter} onChange={this.handleChange} placeholder="Search City"/>
                   </div>
                   {this.loading()}
@@ -74,7 +68,7 @@ class Cities extends Component {
                   //creando imagenes con los datos que salen de la funcion filterElement
                   this.state.data !== 0 && !this.state.loader ?
                     this.state.data.map((item, index) => (
-                      <Link className="cities" to={`/cities/${item._id}`}>
+                      <Link className="cities" to={`/cities/${item._id}`} key={item._id}>
                           <Card inverse className={index % 2 === 0 ? 'image-r':'image-l'} style={{backgroundImage: `url(./assets/${item.cityPic})`}}>
                             <CardTitle tag="h3" className={index % 2 === 0 ? 'titulo-card':'titulo-card-l'}>{item.cityName}</CardTitle>
                           </Card>

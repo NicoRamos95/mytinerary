@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
 import { Jumbotron, Container } from 'reactstrap';
 import { Link } from "react-router-dom";
@@ -7,7 +8,6 @@ export const City = (props) => {
   const [city, setCity] = useState({})
   const [loader, setLoad] = useState(true)
   const [itineraries, setItinerary] = useState(false)
-  console.log(loader)
   const loading = () => {
     if (loader) {
       return(
@@ -25,7 +25,7 @@ export const City = (props) => {
   return (
     <>
     <div className="d-flex justify-content-center aling-items-center m-5">
-    <Link className="text-center backcities" to="/cities"><i className="fas fa-arrow-circle-left d-flex justify-content-center"></i>Go to Back Cities</Link>
+    <Link className="text-center backcities" to="/cities" key={city._id}><i className="fas fa-arrow-circle-left d-flex justify-content-center"></i>Go Back to Cities</Link>
       <Jumbotron fluid className='image-r' style={{backgroundImage: `url(../assets/${city.cityPic})`}}>
         <Container fluid>
           {loading()}
@@ -36,7 +36,7 @@ export const City = (props) => {
     {itineraries? 
         <div className="d-flex justify-content-center">
           <div className="not-found bg-primary text-light">
-            <h1>Not itineraries yet</h1>
+            <h1>No itineraries yet</h1>
           </div>
         </div>: ""
         }
