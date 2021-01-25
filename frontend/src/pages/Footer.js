@@ -22,7 +22,7 @@ const Footer = () => {
                 </div>
                 <div className="col-md-4 footer-col text-light">
                     <div>
-                        <h3 className="m-3">Horary</h3>
+                        <h3 className="m-3">Opening Hours</h3>
                         <p>Mon. a Fry. de 9 a 20h. Sat de 10 a 14h.</p>
                         
                     </div>
