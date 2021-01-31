@@ -3,43 +3,48 @@ import React, { useEffect, useState } from 'react'
 import { Jumbotron, Container } from 'reactstrap';
 import { Link } from "react-router-dom";
 import MyLoader from './Loader';
+import  Itinerary  from './Itinerary';
+import { connect } from 'react-redux'
+import itinerariesActions from '../redux/actions/itinerariesActions';
 
-export const City = (props) => {
+const City = (props) => {
   const [city, setCity] = useState({})
-  const [loader, setLoad] = useState(true)
-  const [itineraries, setItinerary] = useState(false)
-  const loading = () => {
-    if (loader) {
-      return(
-        <MyLoader/>
-      )
-  }
-  }
+  const [itineraries, setItineraries] = useState({})
   useEffect( () => {
-    const id = props.match.params.id
-    fetch('http://localhost:4000/api/cities/' + id)
-    .then(response => response.json())
-    .then(data => {setCity(data.respuesta); setLoad(false); setItinerary(true)})
-    console.log(city)
+    window.scroll(0, 0)
+    const {id} = props.match.params
+    const City = props.cities.filter(city => city._id === id)
+    setCity(City[0])
+    props.allItineraries(city)
+    setItineraries(props.itineraries)
+    console.log(city._id)
   }, [])
+
+  console.log(itineraries)
   return (
-    <>
-    <div className="d-flex justify-content-center aling-items-center m-5">
-    <Link className="text-center backcities" to="/cities" key={city._id}><i className="fas fa-arrow-circle-left d-flex justify-content-center"></i>Go Back to Cities</Link>
-      <Jumbotron fluid className='image-r' style={{backgroundImage: `url(../assets/${city.cityPic})`}}>
-        <Container fluid>
-          {loading()}
-          <h1 className="display-3 text-center text-light">{city.cityName}</h1>
-        </Container> 
-      </Jumbotron>
+    <div>
+      <div className="d-flex justify-content-center aling-items-center m-5">
+      <Link className="text-center backcities" to="/cities" key={city._id}><i className="fas fa-arrow-circle-left d-flex justify-content-center"></i>Go Back to Cities</Link>
+        <Jumbotron fluid className='image-r' style={{backgroundImage: `url(../assets/${city.cityPic})`}}>
+          <Container fluid>
+            <h1 className="display-3 text-center text-light">{city.cityName}</h1>
+          </Container> 
+        </Jumbotron>
+      </div>
+      <Itinerary/>
     </div>
-    {itineraries? 
-        <div className="d-flex justify-content-center">
-          <div className="not-found bg-primary text-light">
-            <h1>No itineraries yet</h1>
-          </div>
-        </div>: ""
-        }
-    </>
   )
 }
+
+const mapStateToProps = state => {
+  return {
+      cities: state.cityR.cities,
+      itineraries: state.itineraryR.itineraries
+  }
+}
+const mapDispatchToProps = {
+  allItineraries: itinerariesActions.getItineraries
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(City) 

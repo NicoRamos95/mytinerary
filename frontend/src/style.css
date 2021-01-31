@@ -138,3 +138,30 @@ Form .button {
   background-size: cover;
 
 }
+
+.itinerary-l{
+  display: flex;
+  align-items: center;
+  width: 75vw;
+  height: 15vw;
+  margin: 0px;
+  padding: 1px;
+  border-radius: 0 300px 0 300px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+}
+.itinerary-r{
+  display: flex;
+  align-items: center;
+  width: 75vw;
+  height: 15vw;
+  margin: 10px;
+  padding: 1px;
+  border-radius: 300px 0 300px 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+}

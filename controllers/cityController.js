@@ -1,4 +1,5 @@
 const City = require('../models/City')
+const Itinerary = require('../models/Itinerary')
 
 const cityController = {
     addCity: (req, res) => {
@@ -33,6 +34,16 @@ const cityController = {
         .catch(error => {
           return res.json({success: false, error: error})
         })
+      },
+
+      cityItinerary: async (res, req) => {
+        const {id} = req.params
+        const itinerary = await Itinerary.find({cityId: id})
+        City.find({_id: id})
+        .then(() => res.json({success: true, itinerary})
+        )
+        .catch(error => res.json({success: false, error: error})
+        )
       }
 }
 module.exports = cityController

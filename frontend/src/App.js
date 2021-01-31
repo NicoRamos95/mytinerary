@@ -4,7 +4,7 @@ import Footer from  './pages/Footer'
 import Cities from './pages/Cities'
 
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
-import { City } from "./components/City";
+import City from "./components/City";
 import Home from './pages/Home';
 
 function App() {
