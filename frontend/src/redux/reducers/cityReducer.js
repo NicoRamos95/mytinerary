@@ -1,6 +1,7 @@
 const initialState = {
     cities: [],
     filter: [],
+    loader: true
 }
 export function cityReducer(state = initialState, action) {
     switch (action.type) {
@@ -8,7 +9,8 @@ export function cityReducer(state = initialState, action) {
             return {
                 ...state,
                 cities: action.payload,
-                filter: action.payload
+                filter: action.payload,
+                loader: false
             }
             break
         case 'SEARCH_CITIES':

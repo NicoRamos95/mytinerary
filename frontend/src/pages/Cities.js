@@ -14,24 +14,10 @@ class Cities extends Component {
     window.scroll(0, 0)
     this.props.allCities()
   }
-  //creando el estado con propiedades a usar 
-  state = {
-    loader: true,
-  }
-
-  //funcion para escuchar el input del buscador y retorna un estado
-  
   //funcion para filtrar los datos retornando un item para comparar con el estado filter
-  loading = () => {
-    if (this.state.loader) {
-      return (
-        <MyLoader/>
-      )
-    }
-    
-  }
-
     render() {
+      if (this.props.loader) return <MyLoader />
+      else 
       return (
         <>
           <div>
@@ -66,7 +52,8 @@ class Cities extends Component {
 const mapStateToProps = state => {
   return {
       cities: state.cityR.cities,
-      filter: state.cityR.filter
+      filter: state.cityR.filter,
+      loader: state.cityR.loader
   }
 }
 

@@ -2,25 +2,21 @@
 import React, { useEffect, useState } from 'react'
 import { Jumbotron, Container } from 'reactstrap';
 import { Link } from "react-router-dom";
-import MyLoader from './Loader';
 import  Itinerary  from './Itinerary';
 import { connect } from 'react-redux'
 import itinerariesActions from '../redux/actions/itinerariesActions';
 
 const City = (props) => {
   const [city, setCity] = useState({})
-  const [itineraries, setItineraries] = useState({})
+
   useEffect( () => {
     window.scroll(0, 0)
     const {id} = props.match.params
     const City = props.cities.filter(city => city._id === id)
     setCity(City[0])
-    props.allItineraries(city)
-    setItineraries(props.itineraries)
-    console.log(city._id)
+    props.allItineraries(id)
   }, [])
 
-  console.log(itineraries)
   return (
     <div>
       <div className="d-flex justify-content-center aling-items-center m-5">
@@ -31,9 +27,14 @@ const City = (props) => {
           </Container> 
         </Jumbotron>
       </div>
-      <Itinerary/>
+      { props.itineraries.length !== 0 ? props.itineraries.map((itinerary, index) => <Itinerary itinerary={itinerary} index={index}/>)
+      :
+      <div className="not-found bg-primary m-5">
+        <h2>Not itineraries</h2>
+      </div>}
     </div>
   )
+  
 }
 
 const mapStateToProps = state => {

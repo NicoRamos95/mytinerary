@@ -122,6 +122,9 @@ Form .button {
   font-size: 5vw
 }
 .backcities {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-decoration: none;
 }
 .not-found{
@@ -141,8 +144,30 @@ Form .button {
 
 .itinerary-l{
   display: flex;
-  align-items: center;
   width: 75vw;
+  margin: 0px;
+  padding: 1px;
+  border-radius: 0 300px 0 300px;
+
+}
+.itinerary-r{
+  display: flex;
+  width: 75vw;
+  margin: 10px;
+  padding: 1px;
+  border-radius: 300px 0 300px 0;
+
+}
+.itinerary{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.activities-l{
+  display: flex;
+  align-items: flex-start;
+  width: 40vw;
   height: 15vw;
   margin: 0px;
   padding: 1px;
@@ -152,16 +177,16 @@ Form .button {
   background-size: cover;
 
 }
-.itinerary-r{
+.activities-r{
   display: flex;
-  align-items: center;
-  width: 75vw;
+  align-items: flex-end;
+  width: 40vw;
   height: 15vw;
-  margin: 10px;
+  margin: 0px;
   padding: 1px;
   border-radius: 300px 0 300px 0;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: bottom;
   background-size: cover;
 
 }

@@ -36,7 +36,7 @@ const cityController = {
         })
       },
 
-      cityItinerary: async (res, req) => {
+      cityItinerary: async (req, res) => {
         const {id} = req.params
         const itinerary = await Itinerary.find({cityId: id})
         City.find({_id: id})

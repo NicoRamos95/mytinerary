@@ -1,6 +1,7 @@
 /* eslint-disable no-unreachable */
 const initialState  = {
-    itineraries: []
+    itineraries: [],
+    loader: true
 } 
 
 export function itineraryReducer(state = initialState, action) {
@@ -8,7 +9,8 @@ export function itineraryReducer(state = initialState, action) {
         case 'CHARGE_ITINERARIES':
             return {
                 ...state,
-                itineraries: action.payload
+                itineraries: action.payload,
+                loader: false
             }
             break
         default:
