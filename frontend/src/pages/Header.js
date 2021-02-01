@@ -31,7 +31,7 @@ const Header = () => {
             </div>
             <div className="hdr bg-l">
 
-                <img src="./assets/logo.png" alt="..." className="logo"></img>
+                <img src="../assets/logo.png" alt="..." className="logo"></img>
 
             </div>
         </header>

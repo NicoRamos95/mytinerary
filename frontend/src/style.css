@@ -147,7 +147,7 @@ Form .button {
   width: 75vw;
   margin: 0px;
   padding: 1px;
-  border-radius: 0 300px 0 300px;
+  border-radius: 0 300px 0 230px;
 
 }
 .itinerary-r{
@@ -172,7 +172,6 @@ Form .button {
   margin: 0px;
   padding: 1px;
   border-radius: 0 300px 0 300px;
-  background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 
@@ -181,12 +180,29 @@ Form .button {
   display: flex;
   align-items: flex-end;
   width: 40vw;
-  height: 15vw;
+  height: 12vw;
   margin: 0px;
   padding: 1px;
   border-radius: 300px 0 300px 0;
-  background-repeat: no-repeat;
   background-position: bottom;
   background-size: cover;
 
+}
+
+.activites-img-r{
+  border-radius: 300px 0 300px 0;
+  height: 24vh;
+  overflow-y: scroll;
+}
+.activites-img-l{
+  border-radius: 0 300px 0 300px;
+  height: 24vh;
+  overflow-y: scroll;
+}
+
+.titulo-act{
+  display: flex;
+  justify-content: center;
+  background-color: rgba(0,0,0,0.5);
+  border-radius: 10px 10px 10px 10px;
 }

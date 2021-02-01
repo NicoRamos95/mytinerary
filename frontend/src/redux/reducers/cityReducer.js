@@ -12,11 +12,15 @@ export function cityReducer(state = initialState, action) {
                 filter: action.payload,
                 loader: false
             }
-            break
         case 'SEARCH_CITIES':
             return{
                 ...state,
                 filter: state.cities.filter(item => item.cityName.toUpperCase().indexOf(action.payload.toUpperCase().trim()) === 0)
+            }
+        case 'CITY_ID':
+            return{
+                ...state,
+                cities: action.payload
             }
         default:
             return state
