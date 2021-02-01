@@ -38,9 +38,10 @@ class Cities extends Component {
                             <CardTitle tag="h3" className={index % 2 === 0 ? 'titulo-card':'titulo-card-l'}>{item.cityName}</CardTitle>
                           </Card>
                       </Link>
-                      )) : <div>
-                        "hola"
-                      </div>
+                      )) : 
+                      <div className="not-found bg-primary m-5">
+                        <h2>Not Cities Found</h2>
+                      </div>}
                   }
                 </FormGroup>
               </Form>
