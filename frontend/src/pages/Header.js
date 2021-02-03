@@ -3,12 +3,12 @@ import {
     Collapse,
     Navbar,
     NavbarToggler,
-    NavbarBrand,
     Nav,
     NavItem,
     NavLink,
   } from 'reactstrap';
 import '../style.css'
+import Login from '../components/Login'
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
   
@@ -17,9 +17,9 @@ const Header = () => {
         <header className="">
             <div className="d-flex justify-content-between">
                 <Navbar light expand="md" className="nav m-2">
-                    <NavbarBrand href="/">Home</NavbarBrand>
+                    <NavLink href="/">Home</NavLink>
                     <NavbarToggler onClick={toggle} />
-                    <Collapse isOpen={isOpen} navbar>
+                    <Collapse isOpen={!isOpen} navbar>
                         <Nav className="mr-auto" navbar>
                             <NavItem>
                                 <NavLink href="/cities">Cities</NavLink>
@@ -27,7 +27,8 @@ const Header = () => {
                         </Nav>
                     </Collapse>
                 </Navbar>
-                <NavLink href="/cities"><i className="fas fa-user m-2 logo-user"></i></NavLink>
+                <NavLink href="/register">Register</NavLink>
+                <Login />
             </div>
             <div className="hdr bg-l">
 

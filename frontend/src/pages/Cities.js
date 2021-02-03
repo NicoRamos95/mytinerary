@@ -42,7 +42,7 @@ class Cities extends Component {
                       <div className="not-found bg-primary m-5">
                         <h2>Not Cities Found</h2>
                       </div>}
-                  }
+                  
                 </FormGroup>
               </Form>
             </div>

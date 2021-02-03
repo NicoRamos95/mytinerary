@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import itinerariesActions from '../redux/actions/itinerariesActions';
 import citiesActions from '../redux/actions/citiesActions';
 
+
 const City = (props) => {
 
   useEffect( () => {
