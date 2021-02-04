@@ -79,7 +79,7 @@ Form .button {
   border-radius: 0 300px 0 300px;
 }
 .nav {
-  width: 10vw;
+  width: 5vw;
 }
 .logo-user {
   font-size: 5vw;
@@ -217,4 +217,18 @@ Form .button {
   width: 84vw;
   background-color: #007bff;
   border-radius: 300px 0 300px 0;
+}
+
+.alert-l { 
+  text-align: center;
+  color: white;
+  background-color: #007bff;
+  border-radius: 300px 0 300px 0;
+}
+.alert-r { 
+  text-align: center;
+  margin: vw 0 0 0;
+  color: white;
+  background-color: #007bff;
+  border-radius: 0 300px 0 300px;
 }

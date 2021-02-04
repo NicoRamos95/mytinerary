@@ -1,34 +1,32 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
-    Collapse,
     Navbar,
-    NavbarToggler,
-    Nav,
-    NavItem,
     NavLink,
   } from 'reactstrap';
 import '../style.css'
 import Login from '../components/Login'
-const Header = () => {
-    const [isOpen, setIsOpen] = useState(false);
-  
-    const toggle = () => setIsOpen(!isOpen);
-    return (
-        <header className="">
-            <div className="d-flex justify-content-between">
-                <Navbar light expand="md" className="nav m-2">
-                    <NavLink href="/">Home</NavLink>
-                    <NavbarToggler onClick={toggle} />
-                    <Collapse isOpen={!isOpen} navbar>
-                        <Nav className="mr-auto" navbar>
-                            <NavItem>
-                                <NavLink href="/cities">Cities</NavLink>
-                            </NavItem>
-                        </Nav>
-                    </Collapse>
-                </Navbar>
+import { connect } from 'react-redux';
+import authActions from '../redux/actions/authActions';
+const Header = (props) => {
+    if (props.loggedUser) {
+        var links = <>
+        <NavLink href="/cities">Cities</NavLink>
+        <NavLink href="/" onClick={() => props.logOutUser()}>LogOut</NavLink>
+        </>
+    } else {
+        // eslint-disable-next-line no-redeclare
+        var links = <>
                 <NavLink href="/register">Register</NavLink>
-                <Login />
+                <NavLink href="/login">login</NavLink>
+        </>
+    }
+    return (
+        <header>
+            <div className="d-flex justify-content-between">
+                <Navbar light expand="md" className="nav">
+                    <NavLink href="/">Home</NavLink>
+                    {links}
+                </Navbar>
             </div>
             <div className="hdr bg-l">
 
@@ -38,5 +36,12 @@ const Header = () => {
         </header>
     )
 } 
-
-export default Header
+const mapStateToProps = state => {
+    return {
+        loggedUser: state.authR.loggedUser
+    }
+}
+const mapDispacthToProps = {
+    logoutUser: authActions.logOutUser
+}
+export default connect(mapStateToProps, mapDispacthToProps)(Header)

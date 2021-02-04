@@ -1,29 +1,44 @@
+/* eslint-disable no-redeclare */
 import Header from './pages/Header'
 import './style.css'
 import Footer from  './pages/Footer'
 import Cities from './pages/Cities'
 
-import {BrowserRouter, Route, Switch} from 'react-router-dom'
+import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom'
 import City from "./components/City";
 import Home from './pages/Home';
 import Register from './components/Register'
 import Login from './components/Login'
+import { connect } from 'react-redux'
 
-function App() {
+const App = (props) => {
+  if (props.loggedUser) {
+    var routes = <Switch>
+      <Route exact path="/" component={Home}/>
+      <Route exact path="/cities" component={Cities}/>
+      <Route path="/cities/:id" component={City}/>
+      <Redirect to="/" />
+      </Switch>
+  } else {
+    var routes = <Switch>
+      <Route exact path="/" component={Home}/>
+      <Route path="/register" component={Register}/>
+      <Route path="/login"component={Login}/>
+      <Redirect to="/" />
+      </Switch>
+  }
   return (
     <>
-    <Header />
-        <BrowserRouter>
-          <Switch>
-              <Route exact path="/" component={Home}/>
-              <Route exact path="/cities" component={Cities}/>
-              <Route path="/cities/:id" component={City}/>
-              <Route path="/register" component={Register}/>
-              <Route path="/login"component={Login}/>
-          </Switch>
-        </BrowserRouter>
-    <Footer />
+      <BrowserRouter>
+        <Header />
+        {routes}
+        <Footer />
+      </BrowserRouter>
   </>)
 }
-
-export default App;
+const mapStateToProps = state => {
+  return {
+    loggedUser: state.authR.loggedUser
+  }
+}
+export default connect(mapStateToProps)(App)

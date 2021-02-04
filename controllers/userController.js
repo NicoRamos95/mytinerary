@@ -4,7 +4,7 @@ const bcryptjs = require('bcryptjs')
 const userController = {
     register: async (req, res) => {
         var errores = []
-        const {firstName, lastName, userName, email, urlPic, password} = req.body
+        const {firstName, lastName, userName, email, urlPic, password, country} = req.body
         if (firstName === '', lastName === '', userName === '', email === '', urlPic === '', password === '') {
             errores.push('Todos los campos tienen que estar completos')
         }
@@ -25,26 +25,30 @@ const userController = {
             const passHashed = bcryptjs.hashSync(password, 10)
 
             var newUser = new User({
-                firstName, lastName, userName, email, urlPic, password: passHashed, pais
+                firstName, lastName, userName, email, urlPic, password: passHashed, country
             })
             
             var userSave = await newUser.save()
+            
+            console.log(userSave)
         }
 
-        return res.json({success: errores.length === 0 ? true : false, errores: errores, response: userSave})
+        return res.json({success: errores.length === 0 ? true : false, 
+                        errores: errores, 
+                        response: userSave}) 
     },
 
     logIn: async (req, res) => {
-        const {username, password} = req.body
-        const userExists = await User.findOne({userName: username})
+        const {userName, password} = req.body
+        const userExists = await User.findOne({userName: userName})
         if (!userExists) {
-            return res.json({success: false, mensaje: 'Usuario o contraseña es invalida.'})
+            return res.json({success: false, mensaje: 'Usuario o contraseña es invalida.aaa'})
         }
         const passMatchs = bcryptjs.compareSync(password, userExists.password)
         if (!passMatchs) {
-            return res.json({success: false, mensaje: 'Usuario o contraseña es invalida.'})
+            return res.json({success: false, mensaje: 'Usuario o contraseña es invalidassss.'})
         }
-        return res.json({success: true}) 
+        return res.json({success: true, response: userExists}) 
     }
 
 }
