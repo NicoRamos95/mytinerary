@@ -17,7 +17,7 @@ const App = (props) => {
       <Route exact path="/" component={Home}/>
       <Route exact path="/cities" component={Cities}/>
       <Route path="/cities/:id" component={City}/>
-      <Redirect to="/" />
+      <Redirect to="/cities" />
       </Switch>
   } else {
     var routes = <Switch>
@@ -29,6 +29,7 @@ const App = (props) => {
   }
   return (
     <>
+    {console.log(props)}
       <BrowserRouter>
         <Header />
         {routes}

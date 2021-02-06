@@ -1,16 +1,13 @@
 import React, { useState } from 'react'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Input, Alert} from 'reactstrap';
+import { Button, Form, FormGroup, Input, Alert} from 'reactstrap';
 import { connect } from 'react-redux';
 import authActions from '../redux/actions/authActions';
 
 
 
 const Login = (props) => {
-    const [userLogin, setUserLogin] = useState({})
+    const [userLogin, setUserLogin] = useState({userName: "", password: ""})
     const [errors, setErrors] = useState([])
-
-    const [modal, setModal] = useState(false)
-    const toggle = () => setModal(!modal)
 
     const seeInput = e => {
         const value = e.target.value
@@ -22,13 +19,9 @@ const Login = (props) => {
     }
     const validateUser = async e => {
         e.preventDefault()
-        if (userLogin.userName === "" || userLogin.password === "") {
-            alert("Completar campos")
-            return false
-            }
         setErrors([])
         const response = await props.loginUser(userLogin)
-        console.log(userLogin)
+        console.log(response)
         if (response && !response.success) {
             setErrors([response.mensaje])
         } else {

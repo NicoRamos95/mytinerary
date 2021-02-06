@@ -3,6 +3,9 @@ const router = express.Router()
 const cityController = require('../controllers/cityController')
 const itineraryController = require('../controllers/itineraryController')
 const userController = require('../controllers/userController')
+const validator = require('../controllers/validator')
+const passport = require('passport')
+require('../config/passport')
 
 
 router.route('/cities')
@@ -20,7 +23,7 @@ router.route('/itineraries/:id')
 .get(cityController.cityItinerary)
 
 router.route('/user/register')
-.post(userController.register)
+.post(validator.register, userController.register)
 
 router.route('/user/login')
 .post(userController.logIn)

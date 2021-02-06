@@ -18,19 +18,15 @@ const Register = (props) => {
 
     const validateUser = async e => {
         e.preventDefault()
-        if (newUser.email === "" ) {
-            alert("Falta email")
-            return false
-            }
         setErrors([])
         console.log(newUser)
         const response = await props.addUser(newUser)
+        console.log(response)
         if (response && !response.success) {
             setErrors(response.errores)
         } else {
             alert("usuario creado")
         }
-        console.log(response)
     }
     console.log(props)
     return (
@@ -58,11 +54,11 @@ const Register = (props) => {
                     </div>
                 </Form>
                 <div>
-                        {errors.map((error, index) => 
-                                <Alert className={index % 2 === 0 ? 'alert-l' : 'alert-r'}>
-                                    {error}
-                            </Alert>
-                        )}
+                    {errors.map((error, index) =>
+                        <Alert className={index % 2 === 0 ? 'alert-l' : 'alert-r'} key={index}>
+                            {error}
+                        </Alert>
+                    )}
                 </div>
             </div>
     )

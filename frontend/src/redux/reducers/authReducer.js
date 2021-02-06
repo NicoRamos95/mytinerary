@@ -7,7 +7,7 @@ export function authReducer(state = initialState, action) {
         case 'LOG_USER':
             return { 
                 ...state,
-                loggedUser: action.payload
+                loggedUser: action.payload.response
             }
         case 'LOG_OUT_USER':
             return {

@@ -4,7 +4,6 @@ import {
     NavLink,
   } from 'reactstrap';
 import '../style.css'
-import Login from '../components/Login'
 import { connect } from 'react-redux';
 import authActions from '../redux/actions/authActions';
 const Header = (props) => {
