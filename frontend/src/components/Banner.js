@@ -1,4 +1,5 @@
 import Button from 'react-bootstrap/Button'
+import { Link } from "react-router-dom"
 
 //componente funcional sencillo para home y redireccion a cities
 export const Banner = () => {
@@ -10,7 +11,7 @@ export const Banner = () => {
       <div className="formulario">
         <img className="w-25 rounded-circle" src="./assets/banner.jpg" alt=""/>
         <div className=" d-flex align-items-center">
-        <Button className="p-5 rounded-pill bg-white text-dark" href="/cities">See itineraries</Button>
+        <Link className="p-5 rounded-pill bg-white text-dark" to="/cities">See Cities</Link>
 
         </div>
       </div>

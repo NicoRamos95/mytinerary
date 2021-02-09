@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { Button, Form, FormGroup, Input, Alert } from 'reactstrap';
 import authActions from '../redux/actions/authActions';
 import Countries from './Countries';
+import { GoogleLogin } from 'react-google-login';
 
 const Register = (props) => {
     const [newUser, setNewUser] = useState({userName: "", password: "", email: ""})
@@ -15,11 +16,27 @@ const Register = (props) => {
             [campo]: value
         })
     }
+    const responseGoogle = async (response) => {
+        console.log(response)
+        if (!response.error) {
+            const respuesta = await props.addUser({
+                email: response.profileObj.email,
+                userName: response.profileObj.givenName,
+                password: "A" + response.profileObj.googleId + "a",
+                urlPic: response.profileObj.imageUrl,
+            })
+            console.log(respuesta)
+            if (respuesta && !respuesta.success) {
+                setErrors(respuesta.errores)
+            } else {
+                alert("usuario creado")
+            }
+        }
+      }
 
     const validateUser = async e => {
         e.preventDefault()
         setErrors([])
-        console.log(newUser)
         const response = await props.addUser(newUser)
         console.log(response)
         if (response && !response.success) {
@@ -28,7 +45,6 @@ const Register = (props) => {
             alert("usuario creado")
         }
     }
-    console.log(props)
     return (
             <div className="container">
                 <Form className="form">
@@ -50,7 +66,14 @@ const Register = (props) => {
                         <FormGroup className="d-flex mt-2 mb-3">
                             <Input className="text-center" onChange={seeInput} type="text" placeholder="UrlPic" name="urlPic"/>
                         </FormGroup>
-                    <Button onClick={validateUser}>Register</Button>
+                        <Button onClick={validateUser}>Register</Button>
+                        <GoogleLogin
+                            clientId="764351894138-6glj9tr5sa01vvu16l20m6cco94m3l2b.apps.googleusercontent.com"
+                            buttonText="Register with google"
+                            onSuccess={responseGoogle}
+                            onFailure={responseGoogle}
+                            cookiePolicy={'single_host_origin'}
+                        />
                     </div>
                 </Form>
                 <div>

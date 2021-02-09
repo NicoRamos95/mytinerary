@@ -1,31 +1,29 @@
 import React from 'react';
 import {
-    Navbar,
-    NavLink,
+    Navbar
   } from 'reactstrap';
+import {NavLink} from 'react-router-dom'
 import '../style.css'
 import { connect } from 'react-redux';
 import authActions from '../redux/actions/authActions';
 const Header = (props) => {
     if (props.loggedUser) {
         var links = <>
-        <NavLink href="/cities">Cities</NavLink>
-        <NavLink href="/" onClick={() => props.logOutUser()}>LogOut</NavLink>
+        <NavLink to="/cities">Cities</NavLink>
+        <NavLink to="/" onClick={() => props.logoutUser()}>LogOut</NavLink>
         </>
     } else {
         // eslint-disable-next-line no-redeclare
         var links = <>
-                <NavLink href="/register">Register</NavLink>
-                <NavLink href="/login">login</NavLink>
+                <NavLink to="/register">Register</NavLink>
+                <NavLink to="/login">login</NavLink>
         </>
     }
     return (
         <header>
             <div className="d-flex justify-content-between">
-                <Navbar light expand="md" className="nav">
-                    <NavLink href="/">Home</NavLink>
-                    {links}
-                </Navbar>
+                <NavLink to="/">Home</NavLink>
+                {links}
             </div>
             <div className="hdr bg-l">
 

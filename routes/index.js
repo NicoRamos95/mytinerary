@@ -28,5 +28,8 @@ router.route('/user/register')
 router.route('/user/login')
 .post(userController.logIn)
 
+router.route('/user/ls')
+.post(passport.authenticate('jwt', {session: false}), userController.logLS)
+
 
 module.exports = router

@@ -12,7 +12,7 @@ module.exports = passport.use(new jwtStrategy({
         if(!user) {
             return done(null, false)
         } else {
-            return donde(null, user)
+            return done(null, user)
         }
     })
     .catch(error => {

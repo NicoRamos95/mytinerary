@@ -5,11 +5,13 @@ const initialState = {
 export function authReducer(state = initialState, action) { 
     switch (action.type) {
         case 'LOG_USER':
-            return { 
+            localStorage.setItem('token', action.payload.response.token)
+            return {
                 ...state,
                 loggedUser: action.payload.response
             }
         case 'LOG_OUT_USER':
+            localStorage.clear()
             return {
                 ...state,
                 loggedUser: null

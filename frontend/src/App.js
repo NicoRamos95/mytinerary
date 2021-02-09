@@ -10,22 +10,36 @@ import Home from './pages/Home';
 import Register from './components/Register'
 import Login from './components/Login'
 import { connect } from 'react-redux'
+import authActions from './redux/actions/authActions'
+import { useState } from 'react'
 
 const App = (props) => {
+  const [reload, setReload] = useState(false)
   if (props.loggedUser) {
-    var routes = <Switch>
+    var routes = 
+    <>
+    <Switch>
       <Route exact path="/" component={Home}/>
       <Route exact path="/cities" component={Cities}/>
       <Route path="/cities/:id" component={City}/>
       <Redirect to="/cities" />
       </Switch>
-  } else {
-    var routes = <Switch>
+    </>
+  } 
+  else if (localStorage.getItem('token')) {
+    console.log(localStorage.getItem('token'))
+    props.logLS(localStorage.getItem('token'))
+    .then(respuesta => {
+      if (respuesta === '/') setReload(!reload)
+    })
+  }
+  else {
+    var routes =  <><Switch>
       <Route exact path="/" component={Home}/>
       <Route path="/register" component={Register}/>
       <Route path="/login"component={Login}/>
       <Redirect to="/" />
-      </Switch>
+      </Switch></>
   }
   return (
     <>
@@ -42,4 +56,7 @@ const mapStateToProps = state => {
     loggedUser: state.authR.loggedUser
   }
 }
-export default connect(mapStateToProps)(App)
+const mapDispatchToProps = {
+  logLS: authActions.logLS
+}
+export default connect(mapStateToProps, mapDispatchToProps)(App)

@@ -23,7 +23,7 @@ const userController = {
 
         return res.json({success: errores.length === 0 ? true : false, 
                         errores: errores, 
-                        response: {token}}) 
+                        response: errores.length === 0 && {token, urlPic: userSave.urlPic, useName: userSave.userName}}) 
     },
 
     logIn: async (req, res) => {
@@ -39,7 +39,11 @@ const userController = {
         }
         
         var token = jwt.sign({...userExists}, process.env.SECRET_KEY, {})
-        return res.json({success: true, response: {token}}) 
+        console.log(userExists)
+        return res.json({success: true, response: {token, userName: userExists.userName}}) 
+    },
+    logLS: (req, res) => {
+        res.json({success: true, response: {token: req.body.token, userName: req.user.userName}}) 
     }
 
 }
