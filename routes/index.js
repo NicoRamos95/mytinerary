@@ -5,6 +5,7 @@ const itineraryController = require('../controllers/itineraryController')
 const userController = require('../controllers/userController')
 const validator = require('../controllers/validator')
 const passport = require('passport')
+const commentController = require('../controllers/commentController')
 require('../config/passport')
 
 
@@ -30,6 +31,10 @@ router.route('/user/login')
 
 router.route('/user/ls')
 .post(passport.authenticate('jwt', {session: false}), userController.logLS)
+
+router.route('/comments/')
+.post(commentController.addComment)
+.put(commentController.deleteComment)
 
 
 module.exports = router

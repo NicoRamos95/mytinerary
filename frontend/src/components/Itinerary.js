@@ -1,10 +1,32 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { Link } from "react-router-dom"
-import { Card, CardTitle, Input} from 'reactstrap'
+import { Button, Card, CardTitle} from 'reactstrap'
+import itinerariesActions from '../redux/actions/itinerariesActions'
+import Comment from './Comment'
 
 const Itinerary = (props) => {
   const [seeMore, setSeemore] = useState(false)
+  const [value, setValue] = useState('')
+  
+  const comment = e => {
+    setValue(e.target.value)
+  }
+  const enviar = async (e) => {
+    // e.preventDefault()
+    await props.addComment(value, props.listItineraries._id, props.loggedUser.userName, props.loggedUser.urlPic)
+    props.getItineraries(props.itinerary.cityId)
+    document.getElementById('comment').value= ""
+  }
+
+  const keyPress = e => {
+    if (e.key === 'Enter') {
+      enviar()
+    }
+  }
+  
+  console.log(value)
+
         return (   
           <div className="d-flex justify-content-center" key={props.itinerary._id}>
             <div className={props.index % 2 === 0 ? 'itinerary-r bg-primary':'itinerary-l bg-primary'}>
@@ -32,12 +54,12 @@ const Itinerary = (props) => {
                 </div>{seeMore ? (
                   <>
                   <div className="d-flex">
-                    <div className={props.index % 2 === 0 ? 'activites-img-r w-50':'activites-img-l w-50'} >
+                    <div className={props.index % 2 === 0 ? 'activites-img-r ':'activites-img-l '} >
                       {props.itinerary.activities.map((activity, index) => {
                         return (
                           <>
                           <div className="d-flex justify-content-start">
-                              <Card inverse className={props.index % 2 === 0 ? 'activities-r':'activities-l'} style={{backgroundImage: `url(${activity.actImage}`}}>
+                              <Card inverse className={props.index % 2 === 0 ? 'activities-r':'activities-l'} key={index} style={{backgroundImage: `url(${activity.actImage}`}}>
                                 <div className="d-flex align-items-center">
                                   <CardTitle tag="h3" className="text-primary titulo-act">{activity.actTitle}</CardTitle>
                                 </div>
@@ -47,22 +69,22 @@ const Itinerary = (props) => {
                           )
                           })}
                     </div>
-                    <div className="w-50">
-                      <h3 className="text-center">Comments</h3>
-                      {props.itinerary.comments.map(comment => {
-                        return (
-                          <>
-                          <div className="d-flex">
-                            <img src={comment.userPic} className="w-25" alt="..."/>
-                            <div>
-                              <h6 className="index">{comment.userName}</h6>
-                              <p className="bg-light rounded w-75">{comment.content}</p>
-                            </div>
-                          </div>
-                          </>
-                        )
-                      })}
-                      <Input type="email" name="email" id="exampleEmail" placeholder="Please login" disabled style={{width : "300px", heigth : "1px"}} />
+                  </div>
+                  <div>
+                    <h2>Comments</h2>
+                    <div className="">
+                      {props.itinerary.comments.length !== 0 ?
+                      (props.itinerary.comments.map(comment => {
+                        return <Comment comment={comment} key={comment._id} id={props.itinerary._id} cityId={props.itinerary.cityId}/>
+                      })) :
+                      <h2>No comments</h2>}
+                      {props.loggedUser ? 
+                      <>
+                      <input className="comment" id="comment" type="text" placeholder="Comment" onChange={comment} onKeyPress={keyPress}/>
+                      <Button onClick={enviar}>Enviar</Button>
+                      </>
+                      :
+                      <input className="comment" disable type="text" placeholder="Firts Logged plz" />}
                     </div>
                   </div>
                   </>):
@@ -79,10 +101,14 @@ const Itinerary = (props) => {
 
 const mapStateToProps = state => {
   return {
-      listItineraries: state.itineraryR.itineraries
+    loggedUser: state.authR.loggedUser,
+    listItineraries: state.itineraryR.itineraries
 
   }
 }
+const mapDispatchToProps = {
+  addComment: itinerariesActions.addComment,
+  getItineraries: itinerariesActions.getItineraries
+}
 
-
-export default connect(mapStateToProps)(Itinerary)
+export default connect(mapStateToProps, mapDispatchToProps)(Itinerary)

@@ -167,8 +167,8 @@ Form .button {
 .activities-l{
   display: flex;
   align-items: flex-start;
-  width: 40vw;
-  height: 15vw;
+  width: 73vw;
+  height: 20vw;
   margin: 0px;
   padding: 1px;
   border-radius: 0 300px 0 300px;
@@ -179,8 +179,8 @@ Form .button {
 .activities-r{
   display: flex;
   align-items: flex-end;
-  width: 40vw;
-  height: 12vw;
+  width: 73vw;
+  height: 20vw;
   margin: 0px;
   padding: 1px;
   border-radius: 300px 0 300px 0;
@@ -191,12 +191,12 @@ Form .button {
 
 .activites-img-r{
   border-radius: 300px 0 300px 0;
-  height: 24vh;
+  height: 40vh;
   overflow-y: scroll;
 }
 .activites-img-l{
   border-radius: 0 300px 0 300px;
-  height: 30vh;
+  height: 40vh;
   overflow-y: scroll;
 }
 

@@ -1,7 +1,8 @@
 /* eslint-disable no-unreachable */
 const initialState  = {
     itineraries: [],
-    loader: true
+    loader: true,
+    comments: []
 } 
 
 export function itineraryReducer(state = initialState, action) {
@@ -13,6 +14,16 @@ export function itineraryReducer(state = initialState, action) {
                 loader: false
             }
             break
+        case 'ADD_COMMENT':
+            return{
+                ...state,
+                comments: action.payload
+            }
+        case 'DELETE_COMMENT':
+            return {
+                ...state,
+                comment: action.payload
+            }
         default:
             return state
     }

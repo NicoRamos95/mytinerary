@@ -23,11 +23,10 @@ const authActions = {
                     Authorization: `Bearer ${token}` 
                 }
                 
-            }) 
-            console.log(respuesta)
+            })
             dispatch({type: 'LOG_USER', payload: {response: {...respuesta.data.response}}})
             } catch(err) {
-                if (err.response.statu === 401) {
+                if (err.response.status === 401) {
                     alert("Usted esta intentando entrar...")
                     localStorage.clear()
                     return '/'

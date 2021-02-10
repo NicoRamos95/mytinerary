@@ -15,6 +15,7 @@ import { useState } from 'react'
 
 const App = (props) => {
   const [reload, setReload] = useState(false)
+  console.log(props)
   if (props.loggedUser) {
     var routes = 
     <>
@@ -27,7 +28,6 @@ const App = (props) => {
     </>
   } 
   else if (localStorage.getItem('token')) {
-    console.log(localStorage.getItem('token'))
     props.logLS(localStorage.getItem('token'))
     .then(respuesta => {
       if (respuesta === '/') setReload(!reload)
@@ -43,7 +43,6 @@ const App = (props) => {
   }
   return (
     <>
-    {console.log(props)}
       <BrowserRouter>
         <Header />
         {routes}

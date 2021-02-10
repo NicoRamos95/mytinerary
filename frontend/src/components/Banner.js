@@ -1,4 +1,4 @@
-import Button from 'react-bootstrap/Button'
+
 import { Link } from "react-router-dom"
 
 //componente funcional sencillo para home y redireccion a cities

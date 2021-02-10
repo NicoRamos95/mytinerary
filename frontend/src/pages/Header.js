@@ -1,7 +1,4 @@
 import React from 'react';
-import {
-    Navbar
-  } from 'reactstrap';
 import {NavLink} from 'react-router-dom'
 import '../style.css'
 import { connect } from 'react-redux';

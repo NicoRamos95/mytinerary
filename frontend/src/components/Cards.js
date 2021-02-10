@@ -7,7 +7,7 @@ const Cards = ({items}) => {
     <div className="tarjeta d-flex flex-wrap">
       {items.map((item, index) => {
         return (
-          <Card inverse>
+          <Card inverse key={index}>
             <CardImg className=""  src={`./assets/carrousel/${item.imagen}`} alt={item.titulo} />
             <CardImgOverlay>
               <CardTitle tag="h5" className="titulo-card">{item.titulo}</CardTitle>

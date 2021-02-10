@@ -52,7 +52,6 @@ const Carrousel = () => {
 
   // creando paginas de carrusel
   const slides = items.map((item, index) => {
-    console.log(item)
       
     return (
       <CarouselItem
@@ -60,7 +59,7 @@ const Carrousel = () => {
         onExited={() => setAnimating(true)}
         key={index}
       >
-        <Cards items={item}/>
+        <Cards items={item} key={index}/>
       </CarouselItem>
     );
   });
