@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import React, { useState } from 'react'
-import { Button, Form, FormGroup, Input, Alert } from 'reactstrap';
+import { Button, Form, FormGroup, Input, Alert, Toast } from 'reactstrap';
 import authActions from '../redux/actions/authActions';
 import Countries from './Countries';
 import { GoogleLogin } from 'react-google-login';
@@ -42,7 +42,7 @@ const Register = (props) => {
         if (response && !response.success) {
             setErrors(response.errores)
         } else {
-            alert("usuario creado")
+            <Toast>Usuario Creado</Toast>
         }
     }
     return (
@@ -67,6 +67,9 @@ const Register = (props) => {
                             <Input className="text-center" onChange={seeInput} type="text" placeholder="UrlPic" name="urlPic"/>
                         </FormGroup>
                         <Button onClick={validateUser}>Register</Button>
+                    </div>
+                </Form>
+                <div className="d-flex justify-content-center">
                         <GoogleLogin
                             clientId="764351894138-6glj9tr5sa01vvu16l20m6cco94m3l2b.apps.googleusercontent.com"
                             buttonText="Register with google"
@@ -74,8 +77,8 @@ const Register = (props) => {
                             onFailure={responseGoogle}
                             cookiePolicy={'single_host_origin'}
                         />
-                    </div>
-                </Form>
+
+                </div>
                 <div>
                     {errors.map((error, index) =>
                         <Alert className={index % 2 === 0 ? 'alert-l' : 'alert-r'} key={index}>

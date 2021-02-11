@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { Link } from "react-router-dom"
-import { Button, Card, CardTitle} from 'reactstrap'
+import { Button, Card, CardTitle, Input} from 'reactstrap'
 import itinerariesActions from '../redux/actions/itinerariesActions'
 import Comment from './Comment'
 
@@ -13,8 +13,8 @@ const Itinerary = (props) => {
     setValue(e.target.value)
   }
   const enviar = async (e) => {
-    // e.preventDefault()
-    await props.addComment(value, props.listItineraries._id, props.loggedUser.userName, props.loggedUser.urlPic)
+    console.log(props)
+    await props.addComment(value, props.itinerary._id, props.loggedUser.token)
     props.getItineraries(props.itinerary.cityId)
     document.getElementById('comment').value= ""
   }
@@ -24,8 +24,6 @@ const Itinerary = (props) => {
       enviar()
     }
   }
-  
-  console.log(value)
 
         return (   
           <div className="d-flex justify-content-center" key={props.itinerary._id}>
@@ -71,20 +69,22 @@ const Itinerary = (props) => {
                     </div>
                   </div>
                   <div>
-                    <h2>Comments</h2>
+                    <h2 className="text-center">Comments</h2>
                     <div className="">
                       {props.itinerary.comments.length !== 0 ?
                       (props.itinerary.comments.map(comment => {
                         return <Comment comment={comment} key={comment._id} id={props.itinerary._id} cityId={props.itinerary.cityId}/>
                       })) :
-                      <h2>No comments</h2>}
+                      <h2 className="text-center bg-white">No comments</h2>}
                       {props.loggedUser ? 
-                      <>
-                      <input className="comment" id="comment" type="text" placeholder="Comment" onChange={comment} onKeyPress={keyPress}/>
-                      <Button onClick={enviar}>Enviar</Button>
-                      </>
+                      <div className="d-flex justify-content-center">
+                          <div className="d-flex">
+                            <Input className="comment" id="comment" type="text" placeholder="Comment" onChange={comment} onKeyPress={keyPress}/>
+                            <Button onClick={enviar}>Enviar</Button>
+                          </div>
+                      </div>
                       :
-                      <input className="comment" disable type="text" placeholder="Firts Logged plz" />}
+                      <Input className="comment" disabled type="text" placeholder="Firts Logged plz" />}
                     </div>
                   </div>
                   </>):
