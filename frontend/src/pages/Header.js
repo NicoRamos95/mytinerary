@@ -9,7 +9,7 @@ const Header = (props) => {
         <NavLink to="/cities">Cities</NavLink>
         <NavLink to="/" onClick={() => props.logoutUser()}>LogOut</NavLink>
                 <div className="d-flex align-items-center justify-content-end">
-                    <h3>Hola {props.loggedUser.userName} </h3>
+                    <h3>Hi {props.loggedUser.userName}! </h3>
                     <img src={props.loggedUser.urlPic} alt="..." width="50vw" className="rounded"/>
                 </div>
         </>
@@ -24,7 +24,7 @@ const Header = (props) => {
     return (
         <header>{
         console.log(props.loggedUser)}
-            <div className="d-flex justify-content-between align-items-center">
+            <div className="d-flex justify-content-between align-items-center m-3">
                 <NavLink to="/">Home</NavLink>
                 {links}
             </div>

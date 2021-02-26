@@ -81,7 +81,7 @@ const Register = (props) => {
                 </div>
                 <div>
                     {errors.map((error, index) =>
-                        <Alert className={index % 2 === 0 ? 'alert-l' : 'alert-r'} key={index}>
+                        <Alert className={index % 2 === 0 ? 'alert-l bg-danger' : 'alert-r bg-danger'} key={index}>
                             {error}
                         </Alert>
                     )}

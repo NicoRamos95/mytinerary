@@ -75,7 +75,7 @@ const Itinerary = (props) => {
                       (props.itinerary.comments.map(comment => {
                         return <Comment comment={comment} key={comment._id} id={props.itinerary._id} cityId={props.itinerary.cityId}/>
                       })) :
-                      <h2 className="text-center bg-white">No comments</h2>}
+                      <h2 className="text-center bg-white w-100">No comments</h2>}
                       {props.loggedUser ? 
                       <div className="d-flex justify-content-center">
                           <div className="d-flex">
@@ -83,8 +83,10 @@ const Itinerary = (props) => {
                             <Button onClick={enviar}>Enviar</Button>
                           </div>
                       </div>
-                      :
-                      <Input className="comment" disabled type="text" placeholder="Firts Logged plz" />}
+                      :<div className="d-flex justify-content-center">
+                        <Input className="comment w-50 text-center" disabled type="text" placeholder="Firts Logged plz" />
+
+                      </div>}
                     </div>
                   </div>
                   </>):
