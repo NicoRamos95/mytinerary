@@ -34,7 +34,8 @@ class Cities extends Component {
                   this.props.filter !== 0 ?
                     this.props.filter.map((item, index) => (
                       <Link className="cities" to={`/cities/${item._id}`} key={item._id}>
-                          <Card inverse className={index % 2 === 0 ? 'image-r':'image-l'} style={{backgroundImage: `url(./assets/${item.cityPic})`}}>
+                        {console.log(item)}
+                          <Card inverse className={index % 2 === 0 ? 'image-r':'image-l'} style={{backgroundImage: `url(${item.cityPic})`}}>
                             <CardTitle tag="h3" className={index % 2 === 0 ? 'titulo-card':'titulo-card-l'}>{item.cityName}</CardTitle>
                           </Card>
                       </Link>

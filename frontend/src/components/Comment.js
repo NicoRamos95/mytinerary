@@ -6,7 +6,7 @@ import itinerariesActions from '../redux/actions/itinerariesActions'
 const Comment = (props) => {
     const [value, setValue] = useState('')
     const [input, setInput] = useState(false)
-    console.log(props)
+    console.log(props.loggedUser)
 
     const deleteC = async (e) => {
         e.preventDefault()
@@ -43,7 +43,8 @@ const Comment = (props) => {
                 {props.loggedUser ?
                 <>
                 <div className="">
-                    <Button onClick={deleteC} className="bg-danger"><i className="far fa-trash-alt"></i></Button>
+                    {props.loggedUser.userName === props.comment.userName && 
+                    <Button onClick={deleteC} className="bg-danger"><i className="far fa-trash-alt"></i></Button>}
                     <Button onClick={() => {setInput(!input)}} className="bg-info"><i className="fas fa-edit"></i></Button>
                 </div>
                 </>

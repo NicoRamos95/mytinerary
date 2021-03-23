@@ -22,7 +22,8 @@ const City = (props) => {
     <div>
       <div className="d-flex justify-content-center aling-items-center m-5">
       <Link className="text-center backcities" to="/cities" key={props.cities._id}><i className="fas fa-arrow-circle-left d-flex justify-content-center"></i>Go Back to Cities</Link>
-        <Jumbotron fluid className='image-r' style={{backgroundImage: `url(../assets/${props.cities.cityPic})`}}>
+        <Jumbotron fluid className='image-r' style={{backgroundImage: `url(${props.cities.cityPic})`}}>
+          {console.log(props.cities)}
           <Container fluid>
             <h1 className="display-3 text-center text-light">{props.cities.cityName}</h1>
           </Container> 

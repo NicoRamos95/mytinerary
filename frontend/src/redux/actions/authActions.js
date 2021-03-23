@@ -1,9 +1,9 @@
 import axios from "axios"
-
+import {Url} from "../../components/ApiUrl"
 const authActions = {
     newUser: (user) => {
-        return async (dispatch, getState) => {
-            const response = await axios.post('http://localhost:4000/api/user/register', user)
+        return async (dispatch) => {
+            const response = await axios.post(`${Url}/user/register`, user)
             if (!response.data.success) {
                 return response.data
             }
@@ -11,14 +11,14 @@ const authActions = {
         }
     },
     logOutUser: () => {
-        return (dispatch, getState) => {
+        return (dispatch) => {
             dispatch({type: 'LOG_OUT_USER'})
         }
     },
     logLS: (token) => {
-        return async (dispatch, getState) => {
+        return async (dispatch) => {
             try {
-                const respuesta = await axios.post('http://localhost:4000/api/user/ls', {token}, {
+                const respuesta = await axios.post( `${Url}/user/ls `, {token}, {
                 headers: {
                     Authorization: `Bearer ${token}` 
                 }
@@ -35,8 +35,8 @@ const authActions = {
         }
     },
     loginUser: (user) => {
-        return async (dispatch, getState) => {
-            const response = await axios.post('http://localhost:4000/api/user/login', user)
+        return async (dispatch) => {
+            const response = await axios.post( `${Url}/user/login`, user)
             console.log(response.data.response)
             if (!response.data.success) {
                 return response.data

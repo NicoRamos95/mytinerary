@@ -1,21 +1,22 @@
+import axios from "axios"
+import {Url} from "../../components/ApiUrl"
+
 const citiesActions = {
     getCities: () => {
-        return async (dispatch, getState) => {
-            const res = await fetch('http://localhost:4000/api/cities')
-            const data = await res.json()
-            dispatch({type: 'CHARGE_CITIES', payload: data.respuesta})
+        return async (dispatch) => {
+            const res = await axios.get(`${Url}/cities`)
+            dispatch({type: 'CHARGE_CITIES', payload: res.data.respuesta})
         }
     },
     searchCities: (value) => {
-        return async (dispatch, getState) => {
+        return async (dispatch) => {
             dispatch({type: 'SEARCH_CITIES', payload: value})
         }
     },
     getCityId: (id) => {
-        return async (dispatch, getState) => {
-            const res = await fetch('http://localhost:4000/api/cities/' + id)
-            const data = await res.json()
-            dispatch({type: 'CITY_ID', payload: data.respuesta})
+        return async (dispatch) => {
+            const res = await axios.get(`${Url}/cities/`+ id)
+            dispatch({type: 'CITY_ID', payload: res.data.respuesta})
         }
     }
 }
